@@ -1,0 +1,20 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <mat-icon>price_check</mat-icon>
+    <span class="toolbar-spacer"></span>
+    <nav>
+      <a
+        *ngFor="let subpage of subpages"
+        routerLinkActive
+        [routerLink]="subpage.href"
+      >
+        <span>{{ subpage.name | capitalize }}</span><i></i>
+      </a>
+      <mat-slide-toggle
+        [checked]="isChecked"
+        (change)="onThemeChange($event)"
+      >
+    </mat-slide-toggle>
+    </nav>
+  </mat-toolbar-row>
+</mat-toolbar>

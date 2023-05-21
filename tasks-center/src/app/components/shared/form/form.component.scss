@@ -1,0 +1,11 @@
+@import '../../../../styles/mixins';
+
+form {
+  @include content-center();
+  flex-direction: column;
+  width: 400px;
+}
+
+.form-actions {
+  @include content-center();
+}

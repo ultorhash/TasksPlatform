@@ -1,0 +1,12 @@
+@import '../styles/variables';
+@import '../styles/mixins.scss';
+
+main {
+  height: calc(100% - #{$header-height + $footer-height});
+  margin: 0 20px;
+}
+
+footer {
+  @include content-center();
+  height: $footer-height;
+}

@@ -1,0 +1,10 @@
+@import "../../../styles/mixins";
+
+.payment-container {
+  @include content-center();
+  height: 100%;
+}
+
+.payment-card {
+  @include content-center($gap: 16px);
+}

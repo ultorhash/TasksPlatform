@@ -1,0 +1,39 @@
+<form
+  [formGroup]="formGroup"
+  (ngSubmit)="onSubmit(formGroup.value)"
+>
+  <mat-form-field
+    *ngFor="let input of form.inputs"
+    appearance="outline"
+  >
+    <mat-label>{{ input.label }}</mat-label>
+    <input
+      matInput
+      [formControlName]="input.name"
+      [required]="input.required"
+    />
+    <mat-icon
+      *ngIf="input.icon"
+      matSuffix
+    >
+      {{ input.icon }}
+    </mat-icon>
+    <mat-error>{{ getError(input.name) }}</mat-error>
+  </mat-form-field>
+  <div class="form-actions">
+    <button
+      mat-stroked-button
+      type="reset"
+      (click)="onReset()"
+    >
+      Reset
+    </button>
+    <button
+      mat-stroked-button
+      type="submit"
+      [disabled]="!formGroup.valid"
+    >
+      Send
+    </button>
+  </div>
+</form>

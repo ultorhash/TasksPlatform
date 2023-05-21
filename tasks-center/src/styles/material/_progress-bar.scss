@@ -1,0 +1,30 @@
+@import '../variables';
+@import '../colors';
+
+.mdc-linear-progress {
+  height: $progress-bar-height !important;
+}
+
+.mdc-linear-progress__bar {
+  transition: transform 0.1s linear !important;
+}
+
+.mdc-linear-progress__bar-inner {
+  border-top-width: $progress-bar-height !important;
+}
+
+.error .mdc-linear-progress__bar-inner {
+  border-color: $red !important;
+}
+
+.success .mdc-linear-progress__bar-inner {
+  border-color: $green !important;
+}
+
+.info .mdc-linear-progress__bar-inner {
+  border-color: $blue !important;
+}
+
+.warning .mdc-linear-progress__bar-inner {
+  border-color: $yellow !important;
+}

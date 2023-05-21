@@ -1,0 +1,9 @@
+@import '~normalize.css';
+@import './styles/reset';
+@import './styles/theme/theme';
+@import './styles/material/material';
+
+html, body {
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
+}

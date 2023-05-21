@@ -1,0 +1,14 @@
+@import '../variables';
+@import '../mixins';
+@import '../colors';
+
+.mat-toolbar,
+.mat-toolbar-multiple-rows {
+  @include content-center();
+  height: $header-height;
+  min-height: $header-height;
+}
+
+.theme-dark .mat-toolbar {
+  background-color: $gray900;
+}

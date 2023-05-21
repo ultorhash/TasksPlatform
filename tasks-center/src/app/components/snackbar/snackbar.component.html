@@ -1,0 +1,22 @@
+<div class="snackbar-container">
+  <div class="snackbar-content">
+    <span>{{ data.message }}</span>
+    <button
+      mat-raised-button
+      (click)="onDismiss()"
+    >
+      OK
+    </button>
+  </div>
+</div>
+<mat-progress-bar
+  mode="determinate"
+  [value]="progress"
+  [ngClass]="{
+    'success': data.type === alertTypes.SUCCESS,
+    'warning': data.type === alertTypes.WARNING,
+    'error': data.type === alertTypes.ERROR,
+    'info': data.type === alertTypes.INFO
+  }"
+>
+</mat-progress-bar>

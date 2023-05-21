@@ -1,0 +1,9 @@
+@import '../../../styles/mixins';
+
+.snackbar-container {
+  padding: 8px;
+}
+
+.snackbar-content {
+  @include content-center(space-between, flex-end);
+}

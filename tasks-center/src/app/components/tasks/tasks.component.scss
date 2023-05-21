@@ -1,0 +1,12 @@
+@import "../../../styles/mixins";
+
+.tasks-container {
+  @include content-center(space-between);
+  border: 1px solid red;
+}
+
+.task-card {
+  border: 2px solid blue;
+  width: 50%;
+  height: 100%;
+}
