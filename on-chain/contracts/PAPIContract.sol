@@ -2,53 +2,11 @@
 pragma solidity ^0.8.18;
 pragma experimental ABIEncoderV2;
 
-interface IERC20 {
-  function getTotalSupply() external view returns (uint256);
-  function balanceOf(address account) external view returns (uint256);
-  function allowance(address owner, address spender) external view returns (uint256);
-  function transfer(address receiver, uint256 amount) external returns (bool);
-  function approve(address spender, uint256 amount) external returns (bool);
-  function transferFrom(address sender, address receiver, uint256 amount) external returns (bool);
+import '../interaces/ERC20.sol';
+import '../interaces/Task.sol';
+import '../interaces/Transaction.sol';
 
-  event Transfer(address indexed from, address indexed to, uint256 amount);
-  event Approval(address indexed owner, address indexed spender, uint256 value);
-}
-
-interface ITask {
-  function addTask(string memory name, string memory description, uint256 amount) external;
-  function deleteTask(uint256 taskId) external payable;
-  function takeTask(address owner, uint256 taskId) external returns (bool);
-  function payTask(uint256 taskId) external payable returns (bool);
-
-  event TakeTask(address owner, uint256 taskId);
-  event PayTask(uint256 taskId, address takenBy, uint256 amount);
-}
-
-interface ITransaction {
-  function getAllTransactions() external view returns (Transaction[] memory);
-  function getTransactionCount() external view returns (uint256);
-
-  event Transfer(address sender, address receiver, uint amount, uint256 timestamp);
-}
-
-struct Task {
-  uint256 id;
-  string name;
-  string description;
-  uint256 amount;
-  address owner;
-  bool isTaken;
-  address takenBy;
-}
-
-struct Transaction {
-  address sender;
-  address receiver;
-  uint amount;
-  uint256 timestamp;
-}
-
-contract TasksCenter is IERC20, ITask, ITransaction {
+contract PAPIContract is IERC20, ITask, ITransaction {
   string public constant name = "PAPI Token";
   string public constant symbol = "PAPI";
   uint8 public constant decimals = 6;
@@ -125,7 +83,7 @@ contract TasksCenter is IERC20, ITask, ITransaction {
     return true;
   }
 
-  function getWalletTasks() external view returns (Task[] memory) {
+  function getAccountTasks() external view override returns (Task[] memory) {
     return tasks[msg.sender];
   }
 
