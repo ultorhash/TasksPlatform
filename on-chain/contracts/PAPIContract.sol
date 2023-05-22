@@ -34,6 +34,33 @@ contract PAPIContract is IERC20, ITask, ITransaction {
     _;
   }
 
+  modifier CanTakeTask(address _owner, uint256 _taskId) {
+    Task memory task;
+    Task[] storage walletTasks = tasks[_owner];
+    uint256 amount = balances[msg.sender];
+
+    for (uint256 i = 0; i < walletTasks.length; i++) {
+      if (walletTasks[i].id == _taskId) {
+        task = walletTasks[i];
+  
+        require(task.isTaken == false && task.takenBy != address(0), "Task is already taken");
+        require(task.amount <= amount, "You don't have enough tokens for this task");
+        _;
+      }
+    }
+
+    revert("Address doesn't have task with provided id");
+    _;
+  }
+
+  modifier CanPayTask(address _owner, uint256 _taskId) {
+    Task memory taskToPay = getWalletTaskById(_owner, _taskId);
+
+    require(taskToPay.isTaken == true && taskToPay.takenBy != address(0), "Task is not assigned");
+    require(taskToPay.amount <= balances[msg.sender], "Not enough tokens to pay for task");
+    _;
+  }
+
   function getTotalSupply() external view override returns (uint256) {
     return totalSupply;
   }
@@ -91,8 +118,17 @@ contract PAPIContract is IERC20, ITask, ITransaction {
     string memory _name,
     string memory _description,
     uint256 _amount
-  ) external override {
-    Task memory newTask = Task(taskId++, _name, _description, _amount, msg.sender, false, address(0));
+  ) external override EnoughBalance(msg.sender, _amount) {
+    Task memory newTask = Task(
+      taskId++,
+      _name,
+      _description,
+      _amount,
+      msg.sender,
+      false,
+      address(0)
+    );
+
     tasks[msg.sender].push(newTask);
   }
 
@@ -111,39 +147,29 @@ contract PAPIContract is IERC20, ITask, ITransaction {
     walletTasks.pop();
   }
 
-  function takeTask(address _owner, uint256 _taskId) external override returns (bool) {
-    Task[] storage walletTasks = tasks[_owner];
+  function takeTask(address _owner, uint256 _taskId) external override CanTakeTask(_owner, _taskId) returns (bool) {
+    Task storage taskToTake = getWalletTaskById(_owner, _taskId);
 
-    for (uint256 i = 0; i < walletTasks.length; i++) {
-      if (walletTasks[i].id == _taskId) {
-        walletTasks[i].isTaken = true;
-        walletTasks[i].takenBy = tx.origin;
-      }
-    }
+    taskToTake.isTaken = true;
+    taskToTake.takenBy = tx.origin;
 
     emit TakeTask(_owner, _taskId);
     return true;
   }
 
-  function payTask(uint256 _taskId) external override payable returns (bool) {
-    Task memory task;
-    Task[] memory walletTasks = tasks[msg.sender];
+  function payTask(uint256 _taskId) external override payable CanPayTask(msg.sender, _taskId) returns (bool) {
+    Task memory taskToPay = getWalletTaskById(msg.sender, _taskId);
 
-    for (uint256 i = 0; i < walletTasks.length; i++) {
-      if (walletTasks[i].id == _taskId) {
-        task = walletTasks[i];
-      }
-    }
-
-    address receiver = task.takenBy;
-    uint256 amount = task.amount;
-
-    require(amount <= balances[msg.sender], "Not enough tokens to pay task");
+    address receiver = taskToPay.takenBy;
+    uint256 amount = taskToPay.amount;
 
     balances[msg.sender] -= amount;
     balances[receiver] += amount;
 
     this.deleteTask(_taskId);
+
+    transactions.push(Transaction(msg.sender, receiver, amount, block.timestamp));
+    transactionCount++;
 
     emit PayTask(_taskId, receiver, amount);
     emit Transfer(msg.sender, receiver, amount, block.timestamp);
@@ -156,5 +182,17 @@ contract PAPIContract is IERC20, ITask, ITransaction {
 
   function getTransactionCount() external view override returns (uint256) {
     return transactionCount;
+  }
+
+  function getWalletTaskById(address _owner, uint256 _taskId) private view returns (Task storage) {
+    Task[] storage walletTasks = tasks[_owner];
+
+    for (uint256 i = 0; i < walletTasks.length; i++) {
+      if (walletTasks[i].id == _taskId) {
+        return walletTasks[i];
+      }
+    }
+
+    revert("Task with provided id could not be found");
   }
 }
