@@ -13,6 +13,7 @@ contract PAPI is IERC20, ITask, ITransaction {
     uint256 taskId = 0;
     uint256 totalSupply;
     uint256 transactionCount;
+    Task[] allTasks;
     Transaction[] transactions;
 
     mapping (address => uint) balances;
@@ -60,6 +61,22 @@ contract PAPI is IERC20, ITask, ITransaction {
         return allowed[_owner][_spender];
     }
 
+    function getAllTransactions() external view override returns (Transaction[] memory) {
+        return transactions;
+    }
+
+    function getTransactionCount() external view override returns (uint256) {
+        return transactionCount;
+    }
+
+    function getWalletTasks() external view override returns (Task[] memory) {
+        return tasks[msg.sender];
+    }
+
+    function getAllTasks() external view override returns (Task[] memory) {
+        return allTasks;
+    }
+
     function transfer(
         address _receiver,
         uint256 _amount
@@ -94,10 +111,6 @@ contract PAPI is IERC20, ITask, ITransaction {
         return true;
     }
 
-    function getAccountTasks() external view override returns (Task[] memory) {
-        return tasks[msg.sender];
-    }
-
     function addTask(
         string memory _name,
         string memory _description,
@@ -110,15 +123,28 @@ contract PAPI is IERC20, ITask, ITransaction {
             _amount,
             msg.sender,
             false,
-            address(0)
+            address(0),
+            block.timestamp
         );
 
         tasks[msg.sender].push(newTask);
+        allTasks.push(newTask);
     }
 
     function deleteTask(uint256 _taskId) external override payable {
         Task memory taskToRemove;
         Task[] storage walletTasks = tasks[tx.origin];
+
+        for (uint i = 0; i < allTasks.length; i++) {
+            if (allTasks[i].id == _taskId) {
+                taskToRemove = allTasks[i];
+                allTasks[i] = allTasks[allTasks.length - 1];
+                allTasks[allTasks.length - 1] = taskToRemove;
+
+                allTasks.pop();
+                break;
+            }
+        }
 
         for (uint i = 0; i < walletTasks.length; i++) {
             if (walletTasks[i].id == _taskId) {
@@ -127,6 +153,7 @@ contract PAPI is IERC20, ITask, ITransaction {
                 walletTasks[walletTasks.length - 1] = taskToRemove;
 
                 walletTasks.pop();
+                emit DeleteTask(_taskId);
                 return;
             }
         }
@@ -136,6 +163,13 @@ contract PAPI is IERC20, ITask, ITransaction {
 
     function takeTask(address _owner, uint256 _taskId) external override CanTakeTask(_owner, _taskId) returns (bool) {
         Task storage taskToTake = getWalletTaskById(_owner, _taskId);
+
+        for (uint i = 0; i < allTasks.length; i++) {
+            if (allTasks[i].id == taskToTake.id) {
+                allTasks[i].isTaken = true;
+                allTasks[i].takenBy = tx.origin;
+            }
+        }
 
         taskToTake.isTaken = true;
         taskToTake.takenBy = tx.origin;
@@ -160,14 +194,6 @@ contract PAPI is IERC20, ITask, ITransaction {
         emit PayTask(_taskId, receiver, amount);
         emit Transfer(msg.sender, receiver, amount, block.timestamp);
         return true;
-    }
-
-    function getAllTransactions() external view override returns (Transaction[] memory) {
-        return transactions;
-    }
-
-    function getTransactionCount() external view override returns (uint256) {
-        return transactionCount;
     }
 
     function getWalletTaskById(address _owner, uint256 _taskId) private view returns (Task storage) {
