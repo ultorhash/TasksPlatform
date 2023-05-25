@@ -2,8 +2,7 @@ import { Contract, ContractFactory } from "ethers";
 import { ethers } from "hardhat";
 
 const entrypoint = async (): Promise<void> => {
-
-  const Transactions: ContractFactory = await ethers.getContractFactory("Transactions");
+  const Transactions: ContractFactory = await ethers.getContractFactory("PAPI");
   const transactions: Contract = await Transactions.deploy();
 
   await transactions.deployed();
