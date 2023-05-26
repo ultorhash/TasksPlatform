@@ -13,7 +13,7 @@ const entrypoint = async (): Promise<void> => {
     );
 
     await contract.deployed();
-    console.log("Transaction deployed to:", contract.address);
+    console.log("Contract deployed to:", contract.address);
   }
 }
 

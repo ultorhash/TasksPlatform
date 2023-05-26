@@ -43,7 +43,6 @@ export class EthereumService {
   }
 
   getAccount$(): Observable<HexString> {
-    console.log
     return from(this.ethereum.request!({ method: EthereumMethods.ACCOUNTS }))
       .pipe(
         map((addresses: HexString[]) => addresses[0])
