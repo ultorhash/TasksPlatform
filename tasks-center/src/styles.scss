@@ -3,6 +3,9 @@
 @import './styles/theme/theme';
 @import './styles/material/material';
 
+@import "~ag-grid-community/styles/ag-grid.css";
+@import "~ag-grid-community/styles/ag-theme-alpine.css";
+
 html, body {
   height: 100%;
   font-family: 'Roboto', sans-serif;

@@ -4,7 +4,8 @@ import { AppComponent } from './app.component';
 import {
   CommonModule,
   RoutingModule,
-  MaterialModule
+  MaterialModule,
+  LibraryModule
 } from './modules';
 import {
   HomeComponent,
@@ -20,6 +21,7 @@ import {
 import {
   CapitalizePipe
 } from './pipes';
+import { TableComponent } from './components/shared/table/table.component';
 
 @NgModule({
   declarations: [
@@ -31,12 +33,14 @@ import {
     SnackbarComponent,
     PaymentComponent,
     HeaderComponent,
-    CapitalizePipe
+    CapitalizePipe,
+    TableComponent
   ],
   imports: [
     CommonModule,
     RoutingModule,
-    MaterialModule
+    MaterialModule,
+    LibraryModule
   ],
   providers: [],
   bootstrap: [AppComponent]
