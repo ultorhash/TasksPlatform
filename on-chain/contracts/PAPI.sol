@@ -2,9 +2,9 @@
 pragma solidity ^0.8.18;
 pragma experimental ABIEncoderV2;
 
-import '../interaces/ERC20.sol';
-import '../interaces/Task.sol';
-import '../interaces/Transaction.sol';
+import '../interfaces/ERC20.sol';
+import '../interfaces/Task.sol';
+import '../interfaces/Transaction.sol';
 
 contract PAPI is IERC20, ITask, ITransaction {
     string public constant name = "PAPI Token";
@@ -192,7 +192,7 @@ contract PAPI is IERC20, ITask, ITransaction {
         transactionCount++;
 
         emit PayTask(_taskId, receiver, amount);
-        emit Transfer(msg.sender, receiver, amount, block.timestamp);
+        emit Payment(msg.sender, receiver, amount, block.timestamp);
         return true;
     }
 

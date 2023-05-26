@@ -10,6 +10,7 @@
     "ts-node": "^10.9.1"
   },
   "dependencies": {
-    "alchemy-sdk": "^2.8.3"
+    "alchemy-sdk": "^2.8.3",
+    "dotenv": "^16.0.3"
   }
 }

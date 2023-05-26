@@ -1,13 +1,20 @@
-import { Contract, ContractFactory } from "ethers";
+import dotenv from 'dotenv';
+import { BigNumber, Contract, ContractFactory } from "ethers";
 import { ethers } from "hardhat";
 
+dotenv.config();
+const { TOTAL_TOKEN_SUPPLY } = process.env;
+
 const entrypoint = async (): Promise<void> => {
-  const Transactions: ContractFactory = await ethers.getContractFactory("PAPI");
-  const transactions: Contract = await Transactions.deploy();
+  if (TOTAL_TOKEN_SUPPLY) {
+    const contractFactory: ContractFactory = await ethers.getContractFactory("PAPI");
+    const contract: Contract = await contractFactory.deploy(
+      BigNumber.from(parseInt(TOTAL_TOKEN_SUPPLY))
+    );
 
-  await transactions.deployed();
-
-  console.log("Transaction deployed to:", transactions.address);
+    await contract.deployed();
+    console.log("Transaction deployed to:", contract.address);
+  }
 }
 
 const main = async (): Promise<never> => {
