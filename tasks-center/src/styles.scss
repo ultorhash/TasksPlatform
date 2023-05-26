@@ -1,12 +1,17 @@
 @import '~normalize.css';
+@import '~ag-grid-community/styles/ag-grid.css';
+@import '~ag-grid-community/styles/ag-theme-alpine.css';
+
 @import './styles/reset';
 @import './styles/theme/theme';
 @import './styles/material/material';
-
-@import "~ag-grid-community/styles/ag-grid.css";
-@import "~ag-grid-community/styles/ag-theme-alpine.css";
+@import './styles/mixins';
 
 html, body {
   height: 100%;
   font-family: 'Roboto', sans-serif;
+}
+
+ag-grid-angular {
+  @include full-size();
 }
