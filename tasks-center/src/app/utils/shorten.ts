@@ -6,8 +6,8 @@ import { HexString } from "../types";
  * @returns Beginning and end of the address
  */
 export const shortenAddress = (address: HexString): string => {
-  const prefix = address.substring(0, 4);
-  const suffix = address.slice(-4);
+  const prefix = address.substring(0, 5);
+  const suffix = address.slice(-5);
 
   return `${prefix}...${suffix}`;
 }

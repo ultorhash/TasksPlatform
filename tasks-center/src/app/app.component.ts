@@ -23,12 +23,12 @@ export class AppComponent {
       tap((account: HexString) => {
         if (account) {
           this.account = account;
-          this.alertService.addAlert({
+          this.alertService.alert({
             type: AlertTypes.SUCCESS,
             message: `Connected to ${shortenAddress(this.account)} account.`
           });
         } else {
-          this.alertService.addAlert({
+          this.alertService.alert({
             type: AlertTypes.WARNING,
             message: 'Active account not found. Please login to your wallet first.'
           });

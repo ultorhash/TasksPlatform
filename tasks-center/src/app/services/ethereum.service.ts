@@ -18,7 +18,7 @@ import { AlertService } from './alert.service';
 import { contractABI, contractAddress } from '../environment';
 import { AlertTypes, EthereumMethods } from '../enums';
 import { HexString, TransferError } from '../types';
-import { getFunction, shortenAddress } from '../utils';
+import { getContractFunction, shortenAddress } from '../utils';
 
 declare global {
   interface Window {
@@ -79,20 +79,20 @@ export class EthereumService {
     return transfer$.pipe(
       switchMap(() => {
         return from(
-          getFunction(contract, "addToBlockchain")(receiver, parsedAmount, message, keyword)
+          getContractFunction(contract, "addToBlockchain")(receiver, parsedAmount, message, keyword)
         );
       }),
       switchMap((hash: providers.TransactionResponse) => from(hash.wait())),
       tap((receipt: providers.TransactionReceipt) => {
-        this.alertService.addAlert({
+        this.alertService.alert({
           type: AlertTypes.SUCCESS,
-          message: `Transaction added on ${shortenAddress(receipt.to as HexString)}.`,
+          message: `Transaction added on ${shortenAddress(receipt.to as HexString)}`,
           duration: 10_000
         });
       }),
-      switchMap(() => from(getFunction(contract, "getTransactionCount")())),
+      switchMap(() => from(getContractFunction(contract, "getTransactionCount")())),
       catchError((err: TransferError) => {
-        this.alertService.addAlert({
+        this.alertService.alert({
           type: AlertTypes.ERROR,
           message: `Transaction denied. Error: ${err}`
         });

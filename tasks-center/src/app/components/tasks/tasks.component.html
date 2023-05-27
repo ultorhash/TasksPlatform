@@ -1,3 +1,9 @@
 <div class="tasks-container">
-  <app-table></app-table>
+  <app-table
+    [config]="tableConfig"
+    [columnDefs]="columnDefs"
+    [rowData]="rowData"
+  >
+  </app-table>
+  <button (click)="add()">Add Task</button>
 </div>

@@ -35,7 +35,7 @@ export class PaymentComponent {
     ).pipe(
       tap((count: BigNumber[]) => {
         const transactionCount = parseInt(count[0]._hex, 16);
-        this.alertService.addAlert({
+        this.alertService.alert({
           type: AlertTypes.INFO,
           message: `Contract has now registered ${transactionCount} transactions.`,
           duration: 2000

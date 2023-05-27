@@ -30,15 +30,15 @@ export class HeaderComponent {
     this.setTheme(themeClass);
   }
 
+  private setTheme(themeClass: ThemeClasses): void {
+    this.renderer.setAttribute(this.document.body, 'class', themeClass);
+  }
+
   onThemeChange({ checked }: MatSlideToggleChange): void {
     const themeClass = checked ? ThemeClasses.DARK_CLASS : ThemeClasses.LIGHT_CLASS;
   
     this.isChecked = checked;
     this.preferenceService.saveTheme(checked ? Themes.DARK : Themes.LIGHT);
     this.setTheme(themeClass);
-  }
-
-  private setTheme(themeClass: ThemeClasses): void {
-    this.renderer.setAttribute(this.document.body, 'class', themeClass);
   }
 }

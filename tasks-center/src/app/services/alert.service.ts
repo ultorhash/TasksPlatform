@@ -34,7 +34,7 @@ export class AlertService implements OnDestroy {
     this.queueAlerts$().subscribe();
   }
 
-  queueAlerts$(): Observable<MatSnackBarDismiss> {
+  private queueAlerts$(): Observable<MatSnackBarDismiss> {
     return this.alertStream$.pipe(
       filter((alert: IAlert) => !!alert.message),
       concatMap((alert: IAlert) => {
@@ -43,7 +43,7 @@ export class AlertService implements OnDestroy {
     );
   }
 
-  openSnackBar(alert: IAlert): MatSnackBarRef<SnackbarComponent> {
+  private openSnackBar(alert: IAlert): MatSnackBarRef<SnackbarComponent> {
     return this.zone.run(() => {
       const { type, message, duration } = alert;
 
@@ -67,7 +67,7 @@ export class AlertService implements OnDestroy {
     });
   }
 
-  addAlert(alert: IAlert): void {
+  alert(alert: IAlert): void {
     this.alertSteam.next(alert);
   }
 
