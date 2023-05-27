@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-
 import {
   CommonModule,
   RoutingModule,
@@ -16,12 +15,13 @@ import {
   HeaderComponent
 } from './components';
 import {
-  FormComponent
+  FormComponent,
+  TableComponent,
+  ButtonComponent
 } from './components/shared';
 import {
   CapitalizePipe
 } from './pipes';
-import { TableComponent } from './components/shared/table/table.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +34,8 @@ import { TableComponent } from './components/shared/table/table.component';
     PaymentComponent,
     HeaderComponent,
     CapitalizePipe,
-    TableComponent
+    TableComponent,
+    ButtonComponent
   ],
   imports: [
     CommonModule,

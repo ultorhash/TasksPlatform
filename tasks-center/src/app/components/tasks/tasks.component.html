@@ -1,8 +1,12 @@
 <div class="tasks-container">
+  <app-button
+    color="accent"
+    [text]="'add task' | capitalize"
+  >
+  </app-button>
   <app-table
     [columnDefs]="columnDefs"
     [rowData]="rowData"
   >
   </app-table>
-  <button (click)="add()">Add Task</button>
 </div>

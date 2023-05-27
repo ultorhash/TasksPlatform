@@ -1,7 +1,8 @@
 @import "../../../styles/mixins";
 
 .tasks-container {
-  @include content-center(space-between);
+  @include content-center(space-between, flex-start);
+  flex-direction: column;
   border: 1px solid red;
   height: 300px;
 }

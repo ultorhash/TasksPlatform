@@ -1,7 +1,7 @@
 import { ColDef, ValueFormatterParams } from "ag-grid-community";
 import { BigNumber } from "ethers";
-import { HexString, Task } from "src/app/types";
-import { contractTime, shortenAddress } from "src/app/utils";
+import { Task } from "src/app/types";
+import { contractTime } from "src/app/utils";
 
 export const columnDefs: ColDef<Task>[] = [
   {
