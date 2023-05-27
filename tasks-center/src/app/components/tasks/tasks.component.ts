@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ColDef } from 'ag-grid-community';
 import { Observable, tap } from 'rxjs';
-import { ITable } from 'src/app/interfaces';
 import { ContractService } from 'src/app/services';
 import { Task } from 'src/app/types';
 import { contractTime } from 'src/app/utils';
@@ -13,10 +12,6 @@ import { columnDefs } from './tasks.data';
   styleUrls: ['./tasks.component.scss']
 })
 export class TasksComponent implements OnInit {
-  public tableConfig: ITable = {
-    evenlyColumns: true
-  };
-
   public rowData: Task[] = [];
   public columnDefs: ColDef<Task>[] = columnDefs;
 

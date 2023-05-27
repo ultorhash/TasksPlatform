@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HexString } from './types';
-import { AlertService, EthereumService } from './services';
+import { AlertService, ContractService } from './services';
 import { tap } from 'rxjs';
 import { shortenAddress } from './utils';
 import { AlertTypes } from './enums';
@@ -14,12 +14,12 @@ export class AppComponent {
   private account: HexString = '0x';
 
   constructor(
-    private ethereumService: EthereumService,
+    private contractService: ContractService,
     private alertService: AlertService
   ) {}
 
   ngOnInit(): void {
-    this.ethereumService.getAccount$().pipe(
+    this.contractService.getAccount$().pipe(
       tap((account: HexString) => {
         if (account) {
           this.account = account;

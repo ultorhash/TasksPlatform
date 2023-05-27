@@ -13,6 +13,12 @@ import { HexString, Task } from "../types";
 import { AlertTypes, EthereumMethods } from "../enums";
 import { getContractFunction, shortenAddress } from "../utils";
 
+declare global {
+  interface Window {
+    ethereum: import('ethers').providers.ExternalProvider
+  }
+}
+
 @Injectable({
   providedIn: 'root'
 })
