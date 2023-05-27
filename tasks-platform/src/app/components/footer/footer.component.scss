@@ -3,5 +3,7 @@
 
 footer {
   @include content-center();
+  flex-direction: column;
   height: $footer-height;
+  padding: $footer-padding;
 }

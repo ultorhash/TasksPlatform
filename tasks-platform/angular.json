@@ -8,7 +8,7 @@
     }
   },
   "projects": {
-    "tasks-center": {
+    "tasks-platform": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -22,7 +22,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/tasks-center",
+            "outputPath": "dist/tasks-platform",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -70,10 +70,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "tasks-center:build:production"
+              "browserTarget": "tasks-platform:build:production"
             },
             "development": {
-              "browserTarget": "tasks-center:build:development"
+              "browserTarget": "tasks-platform:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -81,7 +81,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "tasks-center:build"
+            "browserTarget": "tasks-platform:build"
           }
         },
         "test": {

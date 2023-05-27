@@ -6,6 +6,10 @@ export const subpages: ISubpage[] = [
     href: ''
   },
   {
+    name: 'quick start',
+    href: 'quick-start'
+  },
+  {
     name: 'tasks',
     href: 'tasks'
   },
