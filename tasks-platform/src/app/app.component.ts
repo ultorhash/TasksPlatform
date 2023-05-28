@@ -19,21 +19,21 @@ export class AppComponent {
   ) {}
 
   ngOnInit(): void {
-    this.contractService.getAccount$().pipe(
-      tap((account: HexString) => {
-        if (account) {
-          this.account = account;
-          this.alertService.alert({
-            type: AlertTypes.SUCCESS,
-            message: `Connected to ${shortenAddress(this.account)} account.`
-          });
-        } else {
-          this.alertService.alert({
-            type: AlertTypes.WARNING,
-            message: 'Active account not found. Please login to your wallet first.'
-          });
-        }
-      })
-    ).subscribe();
+    // this.contractService.getAccount$().pipe(
+    //   tap((account: HexString) => {
+    //     if (account) {
+    //       this.account = account;
+    //       this.alertService.alert({
+    //         type: AlertTypes.SUCCESS,
+    //         message: `Connected to ${shortenAddress(this.account)} account.`
+    //       });
+    //     } else {
+    //       this.alertService.alert({
+    //         type: AlertTypes.WARNING,
+    //         message: 'Active account not found. Please login to your wallet first.'
+    //       });
+    //     }
+    //   })
+    // ).subscribe();
   }
 }

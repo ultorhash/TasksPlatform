@@ -6,7 +6,7 @@ import {
   PaymentComponent
 } from '../components';
 
-const title: string = "Tasks Center";
+const title: string = "Tasks Platform";
 
 const routes: Routes = [
   {

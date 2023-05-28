@@ -3,18 +3,18 @@ import { ISubpage } from "src/app/interfaces";
 export const subpages: ISubpage[] = [
   {
     name: 'home',
-    href: ''
+    routerLink: ''
   },
   {
     name: 'quick start',
-    href: 'quick-start'
+    routerLink: 'quick-start'
   },
   {
     name: 'tasks',
-    href: 'tasks'
+    routerLink: 'tasks'
   },
   {
     name: 'payment',
-    href: 'payment'
+    routerLink: 'payment'
   }
 ];

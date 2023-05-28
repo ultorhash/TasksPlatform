@@ -1,4 +1,32 @@
 <footer>
-  © Tasks Center 2022 - {{ year }}
   <mat-divider></mat-divider>
+  <div class="footer-content">
+    <mat-card
+      *ngFor="let region of footerData.regions"
+    >
+      <mat-card-header>{{ region.title }}</mat-card-header>
+      <mat-card-content>
+        <span>{{ region.text }}</span>
+        <ng-container *ngIf="region.linksType === 'inner'; else outer">
+          <a
+            *ngFor="let subpage of region.links"
+            [routerLink]="(subpage | cast: ISubpage).routerLink"
+          >
+            {{ subpage.name }}
+          </a>
+        </ng-container>
+        <ng-template #outer>
+          <a
+            *ngFor="let link of region.links"
+            [href]="(link | cast: ILink).href"
+            [target]="(link | cast: ILink).target"
+          >
+            {{ link.name }}
+          </a>
+        </ng-template>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <mat-divider></mat-divider>
+  {{ footerData.bottomText }} - {{ year }}
 </footer>

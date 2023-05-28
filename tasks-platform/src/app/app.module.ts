@@ -20,7 +20,8 @@ import {
   ButtonComponent
 } from './components/shared';
 import {
-  CapitalizePipe
+  CapitalizePipe,
+  CastPipe
 } from './pipes';
 
 @NgModule({
@@ -33,9 +34,10 @@ import {
     SnackbarComponent,
     PaymentComponent,
     HeaderComponent,
-    CapitalizePipe,
     TableComponent,
-    ButtonComponent
+    ButtonComponent,
+    CapitalizePipe,
+    CastPipe
   ],
   imports: [
     CommonModule,

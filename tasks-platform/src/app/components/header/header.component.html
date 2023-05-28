@@ -6,7 +6,7 @@
       <a
         *ngFor="let subpage of subpages"
         routerLinkActive
-        [routerLink]="subpage.href"
+        [routerLink]="subpage.routerLink"
       >
         <span>{{ subpage.name | titlecase }}</span><i></i>
       </a>
