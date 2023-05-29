@@ -8,7 +8,7 @@
         routerLinkActive
         [routerLink]="subpage.routerLink"
       >
-        <span>{{ subpage.name | titlecase }}</span><i></i>
+        {{ subpage.name | titlecase }}
       </a>
       <mat-slide-toggle
         [checked]="isChecked"

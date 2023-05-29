@@ -18,6 +18,10 @@
     background-color: mat.get-color-from-palette($primary-palette, 900);
   }
 
+  .theme-dark .mat-toolbar a {
+    color: mat.get-color-from-palette($primary-palette, 50);
+  }
+
   .theme-dark mat-divider {
     border-top-color: mat.get-color-from-palette($primary-palette, 100) !important;
   }

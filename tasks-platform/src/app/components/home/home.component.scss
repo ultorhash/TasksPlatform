@@ -1,6 +1,12 @@
-.test {
-  width: 500px;
-  height: 400px;
-  margin: 0 auto;
-  border: 1px solid red;
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+$mat-card-content-padding: 16px;
+
+.contract-card {
+  @include content-center($gap: 16px);
+
+  mat-card-header {
+    font-size: $font-size-large;
+  }
 }

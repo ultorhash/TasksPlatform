@@ -1,0 +1,24 @@
+<mat-card class="contract-card">
+  <mat-card-header>
+    To collaborate with other employees add contract to your wallet on metamask
+  </mat-card-header>
+  <mat-card-content>
+    <mat-form-field
+      appearance="outline"
+      [style.width.ch]="contractAddress.length + iconChWidth"
+    >
+      <input
+        matInput
+        readonly
+        [(ngModel)]="contractAddress"
+      >
+      <button
+        mat-icon-button
+        matSuffix
+        [cdkCopyToClipboard]="contractAddress"
+      >
+        <mat-icon>content_copy</mat-icon>
+      </button>
+    </mat-form-field>
+  </mat-card-content>
+</mat-card>
