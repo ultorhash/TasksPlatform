@@ -9,9 +9,17 @@
     background-color: mat.get-color-from-palette($primary-palette, 100);
   }
 
+  .theme-light mat-divider {
+    border-color: mat.get-color-from-palette($primary-palette, 900);
+  }
+
   .theme-dark footer {
     color: mat.get-color-from-palette($primary-palette, 50);
     background-color: mat.get-color-from-palette($primary-palette, 900);
+  }
+
+  .theme-dark mat-divider {
+    border-top-color: mat.get-color-from-palette($primary-palette, 100) !important;
   }
 }
 

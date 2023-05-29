@@ -5,28 +5,28 @@
 footer {
   @include content-center();
   flex-direction: column;
-  padding: #{$footer-vertical-padding} #{$footer-horizontal-padding};
+  padding: 10px;
 }
 
 .footer-content {
-  @include content-center($justify-content: space-between, $gap: 24px);
-  width: 100%;
-  height: 140px;
+  @include content-center(space-between, flex-start, 24px);
 }
 
 mat-card {
+  @include content-center($align-items: flex-start);
   @include full-size();
-  box-shadow: none;
+  box-shadow: none !important;
   border: none;
   border-radius: 0;
-  //background-color: $transparent;
+  background-color: $transparent;
 }
 
 mat-card-header {
-  color: blue;
+  font-weight: bold;
 }
 
 mat-card-content {
-  display: flex;
+  @include content-center($align-items: flex-start, $gap: 4px);
   flex-direction: column;
+  font-size: $font-size-small;
 }

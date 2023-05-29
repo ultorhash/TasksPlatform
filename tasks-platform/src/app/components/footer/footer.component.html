@@ -12,7 +12,7 @@
             *ngFor="let subpage of region.links"
             [routerLink]="(subpage | cast: ISubpage).routerLink"
           >
-            {{ subpage.name }}
+            {{ subpage.name | titlecase }}
           </a>
         </ng-container>
         <ng-template #outer>
@@ -21,7 +21,7 @@
             [href]="(link | cast: ILink).href"
             [target]="(link | cast: ILink).target"
           >
-            {{ link.name }}
+            {{ link.name | titlecase }}
           </a>
         </ng-template>
       </mat-card-content>

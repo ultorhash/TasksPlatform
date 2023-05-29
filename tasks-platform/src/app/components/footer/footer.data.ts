@@ -4,9 +4,9 @@ export const footerData: IFooter = {
   regions: [
     {
       title: 'About',
-      text: `Lorem ipsum dolor sit amet consectetur
-      adipisicing elit. Eos ullam ad nobis! Debitis
-      ad doloremque quas? Voluptates, iure nihil. Repellat.`
+      text: `The purpose of the platform is to easily and securely
+      store information about the tasks performed by employees and
+      also reward them for additional work in the form of tokens.`
     },
     {
       title: 'Links',
@@ -31,7 +31,7 @@ export const footerData: IFooter = {
       linksType: 'outer',
       links: [
         {
-          name: 'MetaMask',
+          name: 'Metamask',
           href: 'https://metamask.io',
           target: '_blank'
         }
