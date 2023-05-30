@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ColDef } from 'ag-grid-community';
 import { Observable, tap } from 'rxjs';
 import { ContractService } from 'src/app/services';
@@ -12,6 +13,8 @@ import { columnDefs } from './tasks.data';
   styleUrls: ['./tasks.component.scss']
 })
 export class TasksComponent implements OnInit {
+  private destroyRef = inject(DestroyRef);
+
   public rowData: Task[] = [];
   public columnDefs: ColDef<Task>[] = columnDefs;
 
@@ -23,16 +26,18 @@ export class TasksComponent implements OnInit {
 
   fetchData$(): Observable<Task[]> {
     return this.contractService.getAllTasks$().pipe(
+      takeUntilDestroyed(this.destroyRef),
       tap((tasks: Task[]) => {
         this.rowData = tasks;
-
-        console.log(tasks);
-        console.log(tasks[0]);
-        console.log(contractTime(tasks[0].published));
-      }));
+      })
+    );
   }
 
   add() {
     this.contractService.addTask$("Deployment", "Deploy new server", 70).subscribe();
+  }
+
+  onTaskSelect(data: Task): void {
+    console.log(data);
   }
 }

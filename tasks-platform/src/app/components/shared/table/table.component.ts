@@ -1,18 +1,26 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ColDef } from 'ag-grid-community';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output
+} from '@angular/core';
+import {
+  ColDef,
+  RowClickedEvent
+} from 'ag-grid-community';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
-export class TableComponent<TData> implements OnInit {
+export class TableComponent<TData> {
   @Input({ required: true }) columnDefs: ColDef<TData>[] = [];
   @Input({ required: true }) rowData: TData[] = [];
 
-  constructor() {}
+  @Output() rowClicked: EventEmitter<TData> = new EventEmitter<TData>();
 
-  ngOnInit(): void {
-
+  onRowClick(event: RowClickedEvent<TData>): void {
+    this.rowClicked.emit(event.data);
   }
 }

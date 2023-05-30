@@ -1,12 +1,13 @@
 <div class="tasks-container">
   <app-button
-    color="accent"
+    [type]="'stroked'"
     [text]="'add task' | capitalize"
   >
   </app-button>
   <app-table
     [columnDefs]="columnDefs"
     [rowData]="rowData"
+    (rowClicked)="onTaskSelect($event)"
   >
   </app-table>
 </div>
