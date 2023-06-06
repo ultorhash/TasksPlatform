@@ -1,4 +1,4 @@
-import { ISubpage } from "src/app/interfaces";
+import { ISubpage } from "@interfaces";
 
 export const subpages: ISubpage[] = [
   {

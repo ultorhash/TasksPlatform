@@ -1,9 +1,9 @@
 import { Component, Inject, Renderer2 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
-import { ISubpage } from 'src/app/interfaces';
-import { PreferenceService } from 'src/app/services';
-import { ThemeClasses, Themes } from 'src/app/enums';
+import { ISubpage } from '@interfaces';
+import { PreferenceService } from '@services';
+import { ThemeClasses, Themes } from '@enums';
 import { subpages } from './header.data';
 
 @Component({

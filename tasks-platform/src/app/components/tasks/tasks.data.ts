@@ -1,10 +1,10 @@
 import { ColDef, ValueFormatterParams } from "ag-grid-community";
 import { GridsterConfig } from "angular-gridster2";
 import { BigNumber } from "ethers";
-import { Dashboards } from "src/app/enums";
-import { IGridsterItemWithId } from "src/app/interfaces";
-import { Task } from "src/app/types";
-import { contractTime } from "src/app/utils";
+import { Dashboards } from "@enums";
+import { IGridsterItemWithId } from "@interfaces";
+import { Task } from "@types";
+import { contractTime } from "@utils";
 
 export const columnDefs: ColDef<Task>[] = [
   {

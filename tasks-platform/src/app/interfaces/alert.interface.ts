@@ -1,4 +1,4 @@
-import { AlertTypes } from "../enums";
+import { AlertTypes } from "@enums";
 
 interface IAlertOptional {
   duration?: number;

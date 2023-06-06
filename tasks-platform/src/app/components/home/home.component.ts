@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { HexString } from 'src/app/types';
-import { contractAddress } from 'src/app/environment';
+import { HexString } from '@types';
+import { contractAddress } from '@environment';
 
 @Component({
   selector: 'app-home',

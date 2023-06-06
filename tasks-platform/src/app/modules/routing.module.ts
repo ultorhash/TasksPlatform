@@ -4,7 +4,7 @@ import {
   HomeComponent,
   TasksComponent,
   PaymentComponent
-} from '../components';
+} from '@components';
 
 const title: string = "Tasks Platform";
 

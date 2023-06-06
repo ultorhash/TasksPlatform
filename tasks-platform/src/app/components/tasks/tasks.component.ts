@@ -8,11 +8,11 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Observable, tap } from 'rxjs';
 import { ColDef } from 'ag-grid-community';
 import { GridsterConfig } from 'angular-gridster2';
-import { ContractService } from 'src/app/services';
-import { Task } from 'src/app/types';
+import { ContractService } from '@services';
+import { Task } from '@types';
+import { IGridsterItemWithId } from '@interfaces';
+import { Dashboards } from '@enums';
 import { columnDefs, dashboard, gridOptions } from './tasks.data';
-import { IGridsterItemWithId } from 'src/app/interfaces';
-import { Dashboards } from 'src/app/enums';
 
 @Component({
   selector: 'app-tasks',

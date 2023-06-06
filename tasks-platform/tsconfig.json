@@ -21,6 +21,18 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
+    "paths": {
+      "@modules": ["src/app/modules/index.ts"],
+      "@components": ["src/app/components/index.ts"],
+      "@components/shared": ["src/app/components/shared/index.ts"],
+      "@services": ["src/app/services/index.ts"],
+      "@interfaces": ["src/app/interfaces/index.ts"],
+      "@types": ["src/app/types/index.ts"],
+      "@enums": ["src/app/enums/index.ts"],
+      "@pipes": ["src/app/pipes/index.ts"],
+      "@utils": ["src/app/utils"],
+      "@environment": ["src/app/environment/index.ts"]
+    },
     "lib": [
       "ES2022",
       "dom"

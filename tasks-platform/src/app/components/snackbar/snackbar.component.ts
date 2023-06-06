@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_SNACK_BAR_DATA, MatSnackBarRef } from '@angular/material/snack-bar';
 import { interval, takeWhile, tap } from 'rxjs';
-import { AlertTypes } from '../../enums';
+import { AlertTypes } from '@enums';
 
 @Component({
   selector: 'app-snackbar',

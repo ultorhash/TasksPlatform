@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { HexString } from './types';
-import { AlertService, ContractService } from './services';
+import { HexString } from '@types';
+import { AlertService, ContractService } from '@services';
 import { tap } from 'rxjs';
-import { shortenAddress } from './utils';
-import { AlertTypes } from './enums';
+import { shortenAddress } from '@utils';
+import { AlertTypes } from '@enums';
 
 @Component({
   selector: 'app-root',

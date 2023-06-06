@@ -1,4 +1,4 @@
-import { HexString } from "../types";
+import { HexString } from "@types";
 
 /**
  * Hides the address by showing only the first

@@ -1,7 +1,7 @@
 import { Validators } from "@angular/forms";
-import { FormFieldTypes } from "src/app/enums";
-import { IFormInput } from "src/app/interfaces";
-import { hexStringValidator } from "src/app/utils";
+import { FormFieldTypes } from "@enums";
+import { IFormInput } from "@interfaces";
+import { hexStringValidator } from "@utils";
 
 export const formInputs: IFormInput[] = [
   {

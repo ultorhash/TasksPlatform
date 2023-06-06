@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { IForm } from 'src/app/interfaces';
+import { IForm } from '@interfaces';
+import { TransferDto } from '@types';
+import { AlertService, ContractService } from '@services';
+import { AlertTypes } from '@enums';
 import { formInputs } from './payment.data';
-import { TransferDto } from 'src/app/types';
-import { AlertService, ContractService } from 'src/app/services';
-import { AlertTypes } from 'src/app/enums';
 import { tap } from 'rxjs';
 import { BigNumber } from 'ethers';
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IFooter, ILink, ISubpage } from 'src/app/interfaces';
+import { IFooter, ILink, ISubpage } from '@interfaces';
 import { footerData } from './footer.data';
 
 @Component({

@@ -7,11 +7,11 @@ import {
   tap
 } from "rxjs";
 import { Contract, ethers, providers } from "ethers";
-import { AlertService } from "./alert.service";
-import { contractABI, contractAddress } from "../environment";
-import { HexString, Task } from "../types";
-import { AlertTypes, EthereumMethods } from "../enums";
-import { getContractFunction, shortenAddress } from "../utils";
+import { AlertService } from "@services";
+import { contractABI, contractAddress } from "@environment";
+import { HexString, Task } from "@types";
+import { AlertTypes, EthereumMethods } from "@enums";
+import { getContractFunction, shortenAddress } from "@utils";
 
 declare global {
   interface Window {

@@ -1,4 +1,4 @@
-import { IFooter } from "src/app/interfaces";
+import { IFooter } from "@interfaces";
 
 export const footerData: IFooter = {
   regions: [

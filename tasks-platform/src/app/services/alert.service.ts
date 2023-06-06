@@ -15,8 +15,8 @@ import {
   filter,
   tap
 } from "rxjs";
-import { IAlert } from "../interfaces";
-import { SnackbarComponent } from "../components";
+import { IAlert } from "@interfaces";
+import { SnackbarComponent } from "@components";
 
 @Injectable({
   providedIn: 'root'

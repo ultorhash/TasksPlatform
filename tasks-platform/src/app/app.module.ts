@@ -5,7 +5,7 @@ import {
   RoutingModule,
   MaterialModule,
   LibraryModule
-} from './modules';
+} from '@modules';
 import {
   HomeComponent,
   FooterComponent,
@@ -13,16 +13,16 @@ import {
   SnackbarComponent,
   PaymentComponent,
   HeaderComponent
-} from './components';
+} from '@components';
 import {
   FormComponent,
   TableComponent,
   ButtonComponent
-} from './components/shared';
+} from '@components/shared';
 import {
   CapitalizePipe,
   CastPipe
-} from './pipes';
+} from '@pipes';
 
 @NgModule({
   declarations: [

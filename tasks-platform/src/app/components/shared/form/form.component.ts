@@ -8,8 +8,8 @@ import {
   Output
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { IForm } from 'src/app/interfaces';
-import { FormService } from 'src/app/services';
+import { IForm } from '@interfaces';
+import { FormService } from '@services';
 
 @Component({
   selector: 'app-form',

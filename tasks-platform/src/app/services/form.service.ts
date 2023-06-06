@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
-import { IFormInput } from "../interfaces";
+import { IFormInput } from "@interfaces";
 import { FormControl, FormGroup, ValidationErrors } from "@angular/forms";
-import { FormFieldErrors } from "../enums";
+import { FormFieldErrors } from "@enums";
 
 @Injectable({
   providedIn: 'root'
