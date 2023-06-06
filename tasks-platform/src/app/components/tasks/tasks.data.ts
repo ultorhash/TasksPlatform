@@ -1,5 +1,8 @@
 import { ColDef, ValueFormatterParams } from "ag-grid-community";
+import { GridsterConfig } from "angular-gridster2";
 import { BigNumber } from "ethers";
+import { Dashboards } from "src/app/enums";
+import { IGridsterItemWithId } from "src/app/interfaces";
 import { Task } from "src/app/types";
 import { contractTime } from "src/app/utils";
 
@@ -34,5 +37,40 @@ export const columnDefs: ColDef<Task>[] = [
     flex: 1,
     sortable: true,
     resizable: true
+  }
+];
+
+export const gridOptions: GridsterConfig = {
+  resizable: {
+    enabled: true
+  },
+  draggable: {
+    enabled: true,
+    ignoreContentClass: 'card-content',
+  },
+  gridType: 'fit',
+  displayGrid: 'always',
+  swap: true,
+  setGridSize: true
+};
+
+export const dashboard: IGridsterItemWithId<Dashboards>[] = [
+  {
+    id: Dashboards.TABLE,
+    cols: 10,
+    rows: 4,
+    x: 0,
+    y: 0,
+    dragEnabled: true,
+    resizeEnabled: true
+  },
+  {
+    id: Dashboards.DETAILS,
+    cols: 4,
+    rows: 4,
+    x: 0,
+    y: 5,
+    dragEnabled: true,
+    resizeEnabled: true
   }
 ];

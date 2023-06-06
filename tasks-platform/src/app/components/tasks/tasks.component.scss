@@ -1,8 +1,15 @@
-@import "../../../styles/mixins";
+@import "../../../styles/colors";
 
-.tasks-container {
-  @include content-center(space-between, flex-start);
-  flex-direction: column;
-  border: 1px solid red;
-  height: 300px;
+.grid {
+  background-color: $gray900;
+}
+
+.grid-item {
+  padding: 5px;
+  cursor: grab;
+}
+
+mat-card,
+mat-card-content {
+  height: 100%;
 }

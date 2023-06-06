@@ -1,11 +1,18 @@
-import { Component, DestroyRef, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  OnInit,
+  inject
+} from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ColDef } from 'ag-grid-community';
 import { Observable, tap } from 'rxjs';
+import { ColDef } from 'ag-grid-community';
+import { GridsterConfig } from 'angular-gridster2';
 import { ContractService } from 'src/app/services';
 import { Task } from 'src/app/types';
-import { contractTime } from 'src/app/utils';
-import { columnDefs } from './tasks.data';
+import { columnDefs, dashboard, gridOptions } from './tasks.data';
+import { IGridsterItemWithId } from 'src/app/interfaces';
+import { Dashboards } from 'src/app/enums';
 
 @Component({
   selector: 'app-tasks',
@@ -17,6 +24,9 @@ export class TasksComponent implements OnInit {
 
   public rowData: Task[] = [];
   public columnDefs: ColDef<Task>[] = columnDefs;
+  public gridsterOptions: GridsterConfig = gridOptions;
+  public dashboard: IGridsterItemWithId<Dashboards>[] = dashboard;
+  public dashboards: typeof Dashboards = Dashboards;
 
   constructor(private contractService: ContractService) {}
 

@@ -1,13 +1,38 @@
-<div class="tasks-container">
+<!-- <div class="tasks-container">
   <app-button
     [type]="'stroked'"
     [text]="'add task' | capitalize"
   >
   </app-button>
-  <app-table
-    [columnDefs]="columnDefs"
-    [rowData]="rowData"
-    (rowClicked)="onTaskSelect($event)"
+</div> -->
+<gridster
+  class="grid"
+  [options]="gridsterOptions"
+>
+  <gridster-item
+    *ngFor="let item of dashboard"
+    class="grid-item"
+    [item]="item"
   >
-  </app-table>
-</div>
+    <mat-card>
+      <mat-card-header>
+        {{ item.id }}
+      </mat-card-header>
+      <mat-card-content
+        [ngSwitch]="item.id"
+        class="card-content"
+      >
+        <app-table
+          *ngSwitchCase="dashboards.TABLE"
+          [columnDefs]="columnDefs"
+          [rowData]="rowData"
+          (rowClicked)="onTaskSelect($event)"
+        >
+        </app-table>
+        <div *ngSwitchCase="dashboards.DETAILS">
+          Details here
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </gridster-item>
+</gridster>

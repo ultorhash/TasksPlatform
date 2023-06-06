@@ -12,6 +12,33 @@ html, body {
   font-family: 'Roboto', sans-serif;
 }
 
+/* #region ag grid */
 ag-grid-angular {
   @include full-size();
 }
+/* #endregion ag grid */
+
+
+/* region gridster */
+gridster .gridster-column {
+  border-color: gray !important;
+}
+
+gridster .gridster-row {
+  border-color: gray !important;
+}
+
+.gridster-item-resizable-handler.handle-n,
+.gridster-item-resizable-handler.handle-s {
+  height: 5px !important;
+}
+
+.gridster-item-resizable-handler.handle-w,
+.gridster-item-resizable-handler.handle-e {
+  width: 5px !important;
+}
+
+.card-content {
+  cursor: default;
+}
+/* endregion gridster */
