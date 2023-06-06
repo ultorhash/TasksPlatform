@@ -23,13 +23,13 @@
         class="card-content"
       >
         <app-table
-          *ngSwitchCase="dashboards.TABLE"
+          *ngSwitchCase="dashboards.TASKS_TABLE"
           [columnDefs]="columnDefs"
           [rowData]="rowData"
           (rowClicked)="onTaskSelect($event)"
         >
         </app-table>
-        <div *ngSwitchCase="dashboards.DETAILS">
+        <div *ngSwitchCase="dashboards.TASK_DETAILS">
           Details here
         </div>
       </mat-card-content>

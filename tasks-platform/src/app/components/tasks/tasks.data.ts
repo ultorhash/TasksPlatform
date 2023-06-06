@@ -1,7 +1,10 @@
-import { ColDef, ValueFormatterParams } from "ag-grid-community";
+import {
+  ColDef,
+  ValueFormatterParams
+} from "ag-grid-community";
 import { GridsterConfig } from "angular-gridster2";
 import { BigNumber } from "ethers";
-import { Dashboards } from "@enums";
+import { TaskDashboards } from "@enums";
 import { IGridsterItemWithId } from "@interfaces";
 import { Task } from "@types";
 import { contractTime } from "@utils";
@@ -12,14 +15,16 @@ export const columnDefs: ColDef<Task>[] = [
     field: 'name',
     flex: 1,
     sortable: true,
-    resizable: true
+    resizable: true,
+    filter: true
   },
   {
     headerName: 'Amount',
     field: 'amount',
     flex: 1,
     sortable: true,
-    resizable: true
+    resizable: true,
+    filter: true
   },
   {
     headerName: 'Published',
@@ -27,6 +32,7 @@ export const columnDefs: ColDef<Task>[] = [
     flex: 1,
     sortable: true,
     resizable: true,
+    filter: true,
     cellRenderer: (params: ValueFormatterParams<Task, BigNumber>) => {
       return contractTime(params.value);
     }
@@ -36,7 +42,8 @@ export const columnDefs: ColDef<Task>[] = [
     field: 'owner',
     flex: 1,
     sortable: true,
-    resizable: true
+    resizable: true,
+    filter: true
   }
 ];
 
@@ -54,22 +61,22 @@ export const gridOptions: GridsterConfig = {
   setGridSize: true
 };
 
-export const dashboard: IGridsterItemWithId<Dashboards>[] = [
+export const dashboard: IGridsterItemWithId<TaskDashboards>[] = [
   {
-    id: Dashboards.TABLE,
-    cols: 10,
-    rows: 4,
+    id: TaskDashboards.TASKS_TABLE,
+    cols: 20,
+    rows: 10,
     x: 0,
     y: 0,
     dragEnabled: true,
     resizeEnabled: true
   },
   {
-    id: Dashboards.DETAILS,
-    cols: 4,
-    rows: 4,
+    id: TaskDashboards.TASK_DETAILS,
+    cols: 10,
+    rows: 6,
     x: 0,
-    y: 5,
+    y: 10,
     dragEnabled: true,
     resizeEnabled: true
   }

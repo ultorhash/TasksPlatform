@@ -6,6 +6,7 @@ import {
 } from '@angular/core';
 import {
   ColDef,
+  GridOptions,
   RowClickedEvent
 } from 'ag-grid-community';
 
@@ -19,6 +20,10 @@ export class TableComponent<TData> {
   @Input({ required: true }) rowData: TData[] = [];
 
   @Output() rowClicked: EventEmitter<TData> = new EventEmitter<TData>();
+
+  public gridOptions: GridOptions<TData> = {
+    suppressCellFocus: true
+  };
 
   onRowClick(event: RowClickedEvent<TData>): void {
     this.rowClicked.emit(event.data);

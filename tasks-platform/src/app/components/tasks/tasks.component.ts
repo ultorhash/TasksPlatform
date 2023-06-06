@@ -11,7 +11,7 @@ import { GridsterConfig } from 'angular-gridster2';
 import { ContractService } from '@services';
 import { Task } from '@types';
 import { IGridsterItemWithId } from '@interfaces';
-import { Dashboards } from '@enums';
+import { TaskDashboards } from '@enums';
 import { columnDefs, dashboard, gridOptions } from './tasks.data';
 
 @Component({
@@ -25,8 +25,8 @@ export class TasksComponent implements OnInit {
   public rowData: Task[] = [];
   public columnDefs: ColDef<Task>[] = columnDefs;
   public gridsterOptions: GridsterConfig = gridOptions;
-  public dashboard: IGridsterItemWithId<Dashboards>[] = dashboard;
-  public dashboards: typeof Dashboards = Dashboards;
+  public dashboard: IGridsterItemWithId<TaskDashboards>[] = dashboard;
+  public dashboards: typeof TaskDashboards = TaskDashboards;
 
   constructor(private contractService: ContractService) {}
 
