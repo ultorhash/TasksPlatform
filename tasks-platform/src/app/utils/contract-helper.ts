@@ -1,6 +1,9 @@
 import { BigNumber, Contract, ContractFunction } from "ethers";
+import { HexString } from "@types";
 
-const unixMultiplier: number = 1000;
+const UNIX_MULTIPLIER: number = 1000;
+
+export const EMPTY_ADDRESS: HexString = '0x0000000000000000000000000000000000000000';
 
 /**
  * Searches for method in contract.
@@ -18,7 +21,7 @@ export const getContractFunction = (contract: Contract, name: string): ContractF
  * @returns Returns date in `yyyy-MM-dd HH:mm:ss` format.
  */
 export const contractTime = (published: BigNumber): string => {
-  const date = new Date(published.toNumber() * unixMultiplier);
+  const date = new Date(published.toNumber() * UNIX_MULTIPLIER);
   const hours = date.getUTCHours().toString();
   const minutes = date.getUTCMinutes().toString();
   const seconds = date.getUTCSeconds().toString();

@@ -19,14 +19,6 @@ export class SnackbarComponent {
     @Inject(MAT_SNACK_BAR_DATA) public data: any
   ) {}
 
-  private runProgressBar(duration: number): void {
-    interval(duration * this.step).pipe(
-      takeWhile(() => this.progress >= 0),
-      tap(() => this.progress -= 100 * this.step)
-    )
-    .subscribe();
-  }
-
   ngOnInit(): void {
     this.snackbarRef
       .afterOpened()
@@ -41,5 +33,13 @@ export class SnackbarComponent {
 
   onDismiss(): void {
     this.snackbarRef.dismissWithAction();
+  }
+
+  private runProgressBar(duration: number): void {
+    interval(duration * this.step).pipe(
+      takeWhile(() => this.progress >= 0),
+      tap(() => this.progress -= 100 * this.step)
+    )
+    .subscribe();
   }
 }

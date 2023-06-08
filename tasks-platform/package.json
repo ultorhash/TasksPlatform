@@ -19,6 +19,7 @@
     "@angular/platform-browser": "^16.0.3",
     "@angular/platform-browser-dynamic": "^16.0.3",
     "@angular/router": "^16.0.3",
+    "@ngxs/store": "^3.8.1",
     "ag-grid-angular": "^29.3.5",
     "ag-grid-community": "^29.3.5",
     "angular-gridster2": "^16.0.0",

@@ -30,6 +30,8 @@
       "@types": ["src/app/types/index.ts"],
       "@enums": ["src/app/enums/index.ts"],
       "@pipes": ["src/app/pipes/index.ts"],
+      "@store/actions": ["src/app/store/actions/index.ts"],
+      "@store/state": ["src/app/store/state/index.ts"],
       "@utils": ["src/app/utils"],
       "@environment": ["src/app/environment/index.ts"]
     },

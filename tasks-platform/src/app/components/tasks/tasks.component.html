@@ -41,6 +41,11 @@
           >
           </app-button>
           <app-button
+            color="accent"
+            [text]="'pay' | capitalize"
+          >
+          </app-button>
+          <app-button
             color="warn"
             [text]="'delete' | capitalize"
             [disabled]="!selectedTask"
@@ -52,6 +57,7 @@
           <app-table
             [columnDefs]="myTasksTable.columnDefs"
             [rowData]="myTasksTable.rowData"
+            (rowClicked)="onTaskSelect($event)"
           >
           </app-table>
         </mat-card-content>

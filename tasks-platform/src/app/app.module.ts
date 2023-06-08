@@ -23,6 +23,8 @@ import {
   CapitalizePipe,
   CastPipe
 } from '@pipes';
+import { NgxsModule } from '@ngxs/store';
+import { AccountState } from '@store/state';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,10 @@ import {
     CommonModule,
     RoutingModule,
     MaterialModule,
-    LibraryModule
+    LibraryModule,
+    NgxsModule.forRoot([
+      AccountState
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -34,6 +34,15 @@ export class AlertService implements OnDestroy {
     this.queueAlerts$().subscribe();
   }
 
+  alert(alert: IAlert): void {
+    this.alertSteam.next(alert);
+  }
+
+  ngOnDestroy(): void {
+    this.alertSteam.next({} as IAlert);
+    this.alertSteam.complete();
+  }
+
   private queueAlerts$(): Observable<MatSnackBarDismiss> {
     return this.alertStream$.pipe(
       filter((alert: IAlert) => !!alert.message),
@@ -65,14 +74,5 @@ export class AlertService implements OnDestroy {
 
       return snackBarRef;
     });
-  }
-
-  alert(alert: IAlert): void {
-    this.alertSteam.next(alert);
-  }
-
-  ngOnDestroy(): void {
-    this.alertSteam.next({} as IAlert);
-    this.alertSteam.complete();
   }
 }

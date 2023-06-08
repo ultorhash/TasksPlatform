@@ -6,12 +6,19 @@ import {
   switchMap,
   tap
 } from "rxjs";
-import { Contract, ethers, providers } from "ethers";
+import {
+  BigNumber,
+  Contract,
+  ethers,
+  providers
+} from "ethers";
 import { AlertService } from "@services";
 import { contractABI, contractAddress } from "@environment";
 import { HexString, Task } from "@types";
 import { AlertTypes, EthereumMethods } from "@enums";
 import { getContractFunction, shortenAddress } from "@utils";
+import { Store } from "@ngxs/store";
+import { SetAccount } from "@store/actions";
 
 declare global {
   interface Window {
@@ -26,7 +33,10 @@ export class ContractService {
   private readonly ethereum: ethers.providers.ExternalProvider = window.ethereum;
   private readonly contract: Contract;
 
-  constructor(private alertService: AlertService) {
+  constructor(
+    private alertService: AlertService,
+    private store: Store
+  ) {
     this.contract = this.getContract();
   }
 
@@ -47,7 +57,21 @@ export class ContractService {
   getAccount$(): Observable<HexString> {
     return from(this.ethereum.request!({ method: EthereumMethods.ACCOUNTS }))
       .pipe(
-        map((addresses: HexString[]) => addresses[0])
+        map((addresses: HexString[]) => addresses[0]),
+        tap((account: HexString) => {
+          if (account) {
+            this.store.dispatch(new SetAccount(account));
+            // this.alertService.alert({
+            //   type: AlertTypes.SUCCESS,
+            //   message: `Connected to ${shortenAddress(account)} account.`
+            // });
+          } else {
+            this.alertService.alert({
+              type: AlertTypes.WARNING,
+              message: 'Active account not found. Please login to your wallet first.'
+            });
+          }
+        })
       );
   }
 
@@ -65,7 +89,7 @@ export class ContractService {
     );
   }
 
-  deleteTask$(taskId: number): Observable<unknown> {
+  deleteTask$(taskId: BigNumber): Observable<unknown> {
     return from (
       getContractFunction(this.contract, "deleteTask")(taskId)
     ).pipe(
@@ -76,7 +100,7 @@ export class ContractService {
           message: 'Task deleted successfully'
         });
       })
-    )
+    );
   }
 
   getAllTasks$(): Observable<Task[]> {

@@ -12,17 +12,17 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    title: `${title} - Home`
+    title: `${title} | Home`
   },
   {
     path: 'tasks',
     component: TasksComponent,
-    title: `${title} - Tasks`
+    title: `${title} | Tasks`
   },
   {
     path: 'payment',
     component: PaymentComponent,
-    title: `${title} - Payment`
+    title: `${title} | Payment`
   }
 ];
 
