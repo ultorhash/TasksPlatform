@@ -1,4 +1,5 @@
 export enum TaskDashboards {
-  TASKS_TABLE = 'Tasks Table',
+  ALL_TASKS = 'Tasks Table',
   TASK_DETAILS = 'Task Details',
+  MY_TASKS = 'My Tasks'
 }

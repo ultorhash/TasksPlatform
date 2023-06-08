@@ -1,4 +1,5 @@
 @import "../../../styles/colors";
+@import "../../../styles/mixins";
 
 .grid {
   background-color: $gray900;
@@ -12,4 +13,8 @@
 mat-card,
 mat-card-content {
   height: 100%;
+}
+
+mat-card-actions {
+  @include content-center(flex-start);
 }

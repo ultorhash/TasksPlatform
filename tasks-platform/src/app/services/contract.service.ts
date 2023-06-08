@@ -51,7 +51,7 @@ export class ContractService {
       );
   }
 
-  addTask$(name: string, description: string, amount: number): Observable<any> {
+  addTask$(name: string, description: string, amount: number): Observable<unknown> {
     return from(
       getContractFunction(this.contract, "addTask")(name, description, amount)
     ).pipe(
@@ -65,8 +65,28 @@ export class ContractService {
     );
   }
 
+  deleteTask$(taskId: number): Observable<unknown> {
+    return from (
+      getContractFunction(this.contract, "deleteTask")(taskId)
+    ).pipe(
+      switchMap((hash: providers.TransactionResponse) => from (hash.wait())),
+      tap(() => {
+        this.alertService.alert({
+          type: AlertTypes.SUCCESS,
+          message: 'Task deleted successfully'
+        });
+      })
+    )
+  }
+
   getAllTasks$(): Observable<Task[]> {
     return from(getContractFunction(this.contract, "getAllTasks")()).pipe(
+      map((res: Array<Array<Task>>) => res[0])
+    );
+  }
+
+  getMyTasks$(): Observable<Task[]> {
+    return from(getContractFunction(this.contract, "getWalletTasks")()).pipe(
       map((res: Array<Array<Task>>) => res[0])
     );
   }
