@@ -1,11 +1,9 @@
-import {
-  ColDef,
-  ValueFormatterParams
-} from "ag-grid-community";
+import { Validators } from "@angular/forms";
+import { ValueFormatterParams } from "ag-grid-community";
 import { GridsterConfig } from "angular-gridster2";
 import { BigNumber } from "ethers";
-import { TaskDashboards } from "@enums";
-import { IGridsterItemWithId, ITable } from "@interfaces";
+import { FormFieldTypes, TaskDashboards } from "@enums";
+import { IFormInput, IGridsterItemWithId, ITable } from "@interfaces";
 import { Task } from "@types";
 import { contractTime } from "@utils";
 
@@ -113,5 +111,35 @@ export const dashboard: IGridsterItemWithId<TaskDashboards>[] = [
     y: 10,
     dragEnabled: true,
     resizeEnabled: true
+  }
+];
+
+export const addTaskFormInputs: IFormInput[] = [
+  {
+    name: 'name',
+    type: FormFieldTypes.TEXT,
+    label: 'Name',
+    required: true,
+    icon: 'edit_square',
+    validators: [Validators.required]
+  },
+  {
+    name: 'description',
+    type: FormFieldTypes.TEXT,
+    label: 'Description',
+    required: true,
+    icon: 'description',
+    validators: [Validators.required]
+  },
+  {
+    name: 'amount',
+    type: FormFieldTypes.NUMBER,
+    label: 'Amount',
+    required: true,
+    icon: 'payments',
+    validators: [
+      Validators.required,
+      Validators.min(0.005)
+    ]
   }
 ];

@@ -9,6 +9,14 @@ interface IFormInputOptional {
 }
 
 /**
+ * Defines all texts for form
+ */
+interface IFormTypography {
+  title: string;
+  submitText: string;
+}
+
+/**
  * Input for dynamic form.
  */
 export interface IFormInput extends IFormInputOptional {
@@ -22,7 +30,7 @@ export interface IFormInput extends IFormInputOptional {
 /**
  * Specifies configuration for dynamic form.
  */
-export interface IForm<TResult> {
+export interface IForm<TResult> extends IFormTypography {
   inputs: IFormInput[];
   result: TResult;
 }

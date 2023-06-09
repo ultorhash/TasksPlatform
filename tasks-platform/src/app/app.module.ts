@@ -11,7 +11,6 @@ import {
   FooterComponent,
   TasksComponent,
   SnackbarComponent,
-  PaymentComponent,
   HeaderComponent
 } from '@components';
 import {
@@ -35,7 +34,6 @@ import { AccountState } from '@store/state';
     FormComponent,
     TasksComponent,
     SnackbarComponent,
-    PaymentComponent,
     HeaderComponent,
     TableComponent,
     ButtonComponent,

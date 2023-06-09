@@ -12,9 +12,5 @@ export const subpages: ISubpage[] = [
   {
     name: 'tasks',
     routerLink: 'tasks'
-  },
-  {
-    name: 'payment',
-    routerLink: 'payment'
   }
 ];

@@ -11,3 +11,5 @@ export type Task = {
   takenBy: HexString;
   published: BigNumber;
 }
+
+export type NewTask = Pick<Task, 'name' | 'description' | 'amount'>;

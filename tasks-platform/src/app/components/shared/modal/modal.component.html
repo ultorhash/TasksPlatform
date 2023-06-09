@@ -1,3 +1,9 @@
-<div mat-dialog-content>
-  XD
-</div>
+<mat-dialog-content>
+  <ng-container *ngIf="data.hasForm">
+    <app-form
+      [form]="data.form"
+      (formSubmit)="onSubmit($event)"
+    >
+    </app-form>
+  </ng-container>
+</mat-dialog-content>

@@ -18,7 +18,6 @@ import { FormService } from '@services';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormComponent<T> implements OnInit {
-  @Input() title: string = "";
   @Input() form: IForm<T> = {} as IForm<T>;
   @Output() formSubmit: EventEmitter<T> = new EventEmitter<T>();
 
