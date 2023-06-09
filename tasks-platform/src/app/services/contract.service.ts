@@ -75,7 +75,7 @@ export class ContractService {
       );
   }
 
-  addTask$(name: string, description: string, amount: number): Observable<unknown> {
+  addTask$(name: string, description: string, amount: BigNumber): Observable<unknown> {
     return from(
       getContractFunction(this.contract, "addTask")(name, description, amount)
     ).pipe(

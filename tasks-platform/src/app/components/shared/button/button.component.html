@@ -1,12 +1,13 @@
 <button
   mat-button
+  [type]="type"
   [disabled]="disabled"
   [color]="color"
   [ngClass]="{
-    'mat-mdc-button mat-mdc-raised-button': type === 'raised',
-    'mdc-button--outlined mat-mdc-outlined-button': type === 'stroked',
-    'mat-mdc-unelevated-button': type === 'flat',
-    'mat-mdc-menu-item mdc-list-item': type === 'menu'
+    'mat-mdc-button mat-mdc-raised-button': matType === 'raised',
+    'mdc-button--outlined mat-mdc-outlined-button': matType === 'stroked',
+    'mat-mdc-unelevated-button': matType === 'flat',
+    'mat-mdc-menu-item mdc-list-item': matType === 'menu'
   }"
 >
   <span>{{ text }}</span>

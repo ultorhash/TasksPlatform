@@ -4,16 +4,28 @@ import {
   OnInit,
   inject
 } from '@angular/core';
+import {
+  Observable,
+  filter,
+  forkJoin,
+  switchMap,
+  tap
+} from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Observable, forkJoin, tap } from 'rxjs';
 import { GridsterConfig } from 'angular-gridster2';
 import { Select } from '@ngxs/store';
 import { ContractService } from '@services';
 import { HexString, NewTask, Task } from '@types';
-import { IForm, IGridsterItemWithId, ITable } from '@interfaces';
+import {
+  IForm,
+  IGridsterItemWithId,
+  IModalData,
+  ITable
+} from '@interfaces';
 import { TaskDashboards } from '@enums';
-import { EMPTY_ADDRESS } from '@utils';
+import { EMPTY_ADDRESS, isDefined } from '@utils';
+import { ModalComponent } from '@components/shared';
 import { AccountState } from '@store/state';
 import {
   addTaskFormInputs,
@@ -22,7 +34,6 @@ import {
   gridOptions,
   myTasksTable
 } from './tasks.data';
-import { ModalComponent } from '../shared/modal/modal.component';
 
 @Component({
   selector: 'app-tasks',
@@ -72,19 +83,24 @@ export class TasksComponent implements OnInit {
     );
   }
 
-  add() {
-    this.contractService.addTask$("Deployment", "Deploy new server", 70).subscribe();
-  }
-
   addTask(): void {
-    const dialogRef = this.dialog.open(ModalComponent, {
+    const dialogRef = this.dialog.open<
+      ModalComponent,
+      IModalData<NewTask>,
+      NewTask
+    >(ModalComponent, {
       data: {
         hasForm: true,
         form: this.addTaskForm
       }
     });
 
-    dialogRef.afterClosed().subscribe(res => console.log("R:", res));
+    dialogRef.afterClosed().pipe(
+      filter(isDefined),
+      switchMap(({ name, description, amount }: NewTask) => {
+        return this.contractService.addTask$(name, description, amount);
+      })
+    ).subscribe();
   }
 
   deleteTask(task: Task | null): void {

@@ -39,8 +39,8 @@ export class FormComponent<T> implements OnInit {
     return null;
   }
 
-  onSubmit(result: T): void {
-    this.formSubmit.emit(result);
+  onSubmit(): void {
+    this.formSubmit.emit(this.formGroup.value);
   }
 
   onReset(): void {

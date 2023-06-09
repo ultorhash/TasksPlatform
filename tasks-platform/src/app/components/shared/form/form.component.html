@@ -1,8 +1,5 @@
 <h2>{{ form.title }}</h2>
-<form
-  [formGroup]="formGroup"
-  (ngSubmit)="onSubmit(formGroup.value)"
->
+<form [formGroup]="formGroup">
   <mat-form-field
     *ngFor="let input of form.inputs"
     appearance="outline"
@@ -22,19 +19,19 @@
     <mat-error>{{ getError(input.name) }}</mat-error>
   </mat-form-field>
   <div class="form-actions">
-    <button
-      mat-stroked-button
+    <app-button
+      matType="stroked"
       type="reset"
+      text="Reset"
       (click)="onReset()"
     >
-      Reset
-    </button>
-    <button
-      mat-stroked-button
-      type="submit"
+    </app-button>
+    <app-button
+      color="accent"
+      [text]="form.submitText"
       [disabled]="!formGroup.valid"
+      (click)="onSubmit()"
     >
-      {{ form.submitText }}
-    </button>
+    </app-button>
   </div>
 </form>

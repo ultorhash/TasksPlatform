@@ -1,7 +1,5 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { IModalData } from '@interfaces';
-import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-modal',
@@ -11,10 +9,10 @@ import { tap } from 'rxjs';
 export class ModalComponent {
   constructor(
     public dialogRef: MatDialogRef<ModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: IModalData<any>
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
-  onSubmit(data: any): void {
-    this.dialogRef.close(data);
+  onSubmit(result: unknown): void {
+    this.dialogRef.close(result);
   }
 }
