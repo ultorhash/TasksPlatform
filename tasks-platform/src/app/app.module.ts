@@ -17,7 +17,8 @@ import {
 import {
   FormComponent,
   TableComponent,
-  ButtonComponent
+  ButtonComponent,
+  ModalComponent
 } from '@components/shared';
 import {
   CapitalizePipe,
@@ -38,6 +39,7 @@ import { AccountState } from '@store/state';
     HeaderComponent,
     TableComponent,
     ButtonComponent,
+    ModalComponent,
     CapitalizePipe,
     CastPipe
   ],
